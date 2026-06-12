@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不動産売却・賃貸のご相談｜北総線エリア専門</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+        }
+        header {
+            background: #1a73e8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            border-left: 5px solid #1a73e8;
+            padding-left: 10px;
+        }
+        .contact-box {
+            background: #e8f0fe;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .contact-box strong {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>北総線エリアの不動産売却・賃貸のご相談</h1>
+    <p>西白井・白井・千葉NT中央・印西牧の原の専門担当</p>
+</header>
+
+<section>
+    <h2>地域密着で “正直・実務ベース” のご提案</h2>
+    <p>
+        不動産の売却・賃貸は、担当者の力量で結果が大きく変わります。<br>
+        私はこのエリアで長年、売主・賃貸人の立場に立った実務を行ってきました。<br>
+        小手先の営業トークや心理誘導は一切使いません。
+    </p>
+</section>
+
+<section>
+    <h2>動画でのご説明</h2>
+    <p>以下の動画で、売却・賃貸のポイントをわかりやすく解説しています。</p>
+    <div style="text-align:center;">
+        <video width="100%" controls>
+            <source src="video.mp4" type="video/mp4">
+            お使いの環境では動画を再生できません。
+        </video>
+    </div>
+</section>
+
+<section>
+    <h2>お問い合わせ</h2>
+    <div class="contact-box">
+        <p>メールでのご相談はこちら：</p>
+        <strong>ryu2kamada@gmail.com</strong>
+        <p>コピーしてお使いください。</p>
+    </div>
+</section>
+
+</body>
+</html>
