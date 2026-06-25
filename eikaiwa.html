@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="英会話フレーズ">
+<meta name="theme-color" content="#1F4E79">
+<title>英会話フレーズ 470</title>
+<style>
+  :root{
+    --navy:#1F4E79; --navy-deep:#15375B; --gold:#E0A23B; --gold-soft:#FBF1DC;
+    --ink:#1B2733; --muted:#5B6B7C; --paper:#F4F6FA; --card:#FFFFFF;
+    --line:#E3E9F0; --line-soft:#EEF2F7; --shade:#F6F8FB;
+    --font-display:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic Pro","Hiragino Sans",system-ui,sans-serif;
+    --font-body:-apple-system,BlinkMacSystemFont,system-ui,"Hiragino Sans","Helvetica Neue",sans-serif;
+    --nav-h:64px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body); background:var(--paper); color:var(--ink);
+    font-size:17px; line-height:1.5; -webkit-text-size-adjust:100%;
+    padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:560px;margin:0 auto;}
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:30;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#fff; padding:calc(env(safe-area-inset-top) + 14px) 18px 14px;
+    box-shadow:0 2px 10px rgba(21,55,91,.18);
+  }
+  header .hwrap{max-width:560px;margin:0 auto;display:flex;align-items:baseline;gap:10px;}
+  header h1{font-family:var(--font-display);font-size:21px;font-weight:700;margin:0;letter-spacing:.02em;}
+  header .star{color:var(--gold);}
+  header .sub{font-size:12px;color:#C8D8EA;margin-left:auto;font-variant-numeric:tabular-nums;}
+
+  main{padding:16px 14px 8px;}
+
+  /* tip banner */
+  .tip{
+    background:var(--gold-soft); border:1px solid #F0DFB6; border-radius:14px;
+    padding:12px 14px; font-size:13.5px; color:#7A5A1E; margin-bottom:14px;
+    display:flex; gap:10px; align-items:flex-start; line-height:1.55;
+  }
+  .tip b{color:#5E4413;}
+  .tip .x{margin-left:auto;flex:none;border:none;background:none;color:#9A7B3A;font-size:18px;padding:0 2px;cursor:pointer;}
+
+  /* search */
+  .search{position:relative;margin-bottom:12px;}
+  .search input{
+    width:100%; font-family:var(--font-body); font-size:16px; color:var(--ink);
+    padding:13px 14px 13px 42px; border:1.5px solid var(--line); border-radius:13px;
+    background:var(--card); outline:none;
+  }
+  .search input:focus{border-color:var(--navy);}
+  .search .ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:17px;}
+  .search .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:none;color:var(--muted);font-size:20px;padding:6px;display:none;}
+
+  /* chips */
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:none; font-family:var(--font-display); font-size:14px; font-weight:600;
+    padding:9px 14px; border-radius:999px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--muted); white-space:nowrap; cursor:pointer;
+  }
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .subchips{display:flex;gap:7px;overflow-x:auto;padding:0 2px 12px;scrollbar-width:none;}
+  .subchips::-webkit-scrollbar{display:none;}
+  .subchip{
+    flex:none;font-size:13px;padding:7px 12px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--muted);white-space:nowrap;cursor:pointer;
+  }
+  .subchip.on{background:var(--gold-soft);border-color:var(--gold);color:#7A5A1E;font-weight:600;}
+
+  .count{font-size:12.5px;color:var(--muted);margin:2px 4px 10px;}
+
+  /* cards */
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:15px;
+    padding:14px 14px 12px; margin-bottom:11px; box-shadow:0 1px 2px rgba(27,39,51,.04);
+  }
+  .card .en{font-size:19px;font-weight:600;color:var(--navy-deep);line-height:1.35;letter-spacing:.01em;}
+  .card .ja{font-family:var(--font-display);font-size:16px;color:var(--ink);margin-top:5px;}
+  .card .tag{font-size:11px;color:var(--muted);margin-top:8px;}
+  .card .row{display:flex;gap:10px;margin-top:11px;}
+  .btn-ic{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+    font-family:var(--font-display);font-size:14px;font-weight:600;
+    padding:10px;border-radius:11px;border:1.5px solid var(--line);background:var(--shade);color:var(--navy);cursor:pointer;
+  }
+  .btn-ic:active{background:#EAF0F7;}
+  .btn-ic.fav.on{background:var(--gold-soft);border-color:var(--gold);color:#996A18;}
+  .btn-ic .em{font-size:16px;}
+  .speaking{box-shadow:0 0 0 2px var(--navy) inset;}
+
+  .empty{text-align:center;color:var(--muted);padding:60px 24px;font-size:15px;line-height:1.7;}
+  .empty .big{font-size:34px;display:block;margin-bottom:10px;}
+
+  /* study */
+  .study-bar{display:flex;gap:8px;margin-bottom:14px;}
+  .seg{display:flex;flex:1;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);}
+  .seg button{flex:1;border:none;background:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--muted);padding:10px 4px;cursor:pointer;}
+  .seg button.on{background:var(--navy);color:#fff;}
+  .study-scope{margin-bottom:12px;}
+  .study-scope select{
+    width:100%;font-family:var(--font-body);font-size:15px;color:var(--ink);
+    padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);
+    -webkit-appearance:none;appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%235B6B7C' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 14px center;
+  }
+  .flash{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:28px 22px;box-shadow:0 3px 14px rgba(27,39,51,.06);cursor:pointer;position:relative;
+  }
+  .flash .qlabel{position:absolute;top:14px;left:0;right:0;font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;}
+  .flash .front{font-size:25px;font-weight:600;color:var(--navy-deep);line-height:1.35;}
+  .flash .front.ja{font-family:var(--font-display);}
+  .flash .divider{width:46px;height:2px;background:var(--gold);border-radius:2px;margin:16px 0;opacity:0;transition:opacity .2s;}
+  .flash.revealed .divider{opacity:1;}
+  .flash .back{font-size:20px;color:var(--ink);min-height:26px;opacity:0;transition:opacity .25s;}
+  .flash .back.ja{font-family:var(--font-display);}
+  .flash.revealed .back{opacity:1;}
+  .flash .hint{position:absolute;bottom:14px;left:0;right:0;font-size:12px;color:#9AA8B6;}
+  .flash.revealed .hint{opacity:0;}
+  .flash.no-card{cursor:default;}
+  .flash.no-card .divider,.flash.no-card .hint{display:none;}
+  .study-ctrl{display:flex;gap:10px;margin-top:14px;align-items:center;}
+  .study-ctrl button{
+    font-family:var(--font-display);font-weight:600;font-size:15px;border-radius:13px;border:1.5px solid var(--line);
+    background:var(--card);color:var(--navy);padding:13px 0;cursor:pointer;
+  }
+  .study-ctrl .nav{flex:1;}
+  .study-ctrl .nav:active{background:#EAF0F7;}
+  .study-ctrl .ico{width:52px;flex:none;font-size:18px;}
+  .study-ctrl .speak{background:var(--navy);color:#fff;border-color:var(--navy);width:60px;flex:none;font-size:20px;}
+  .progress{height:6px;background:var(--line-soft);border-radius:6px;overflow:hidden;margin:14px 2px 4px;}
+  .progress span{display:block;height:100%;background:var(--gold);transition:width .25s;}
+  .pcount{text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:8px;}
+
+  /* bottom nav */
+  nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:40;
+    background:rgba(255,255,255,.96);backdrop-filter:saturate(160%) blur(10px);
+    border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom);
+    display:flex;
+  }
+  nav .nwrap{max-width:560px;margin:0 auto;display:flex;width:100%;}
+  nav button{
+    flex:1;border:none;background:none;height:var(--nav-h);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    color:var(--muted);font-family:var(--font-display);font-size:11px;font-weight:600;cursor:pointer;
+  }
+  nav button .nem{font-size:21px;line-height:1;}
+  nav button.on{color:var(--navy);}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <h1><span class="star">★</span> 英会話フレーズ</h1>
+    <span class="sub" id="hcount"></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ============ 一覧 ============ -->
+  <section id="view-browse">
+    <div class="tip" id="tip">
+      <span>📲</span>
+      <div><b>ホーム画面に追加</b>すると全画面のアプリになります。Safariの共有ボタン →「ホーム画面に追加」。</div>
+      <button class="x" id="tipX" aria-label="閉じる">×</button>
+    </div>
+    <div class="search">
+      <span class="ic">🔍</span>
+      <input id="q" type="search" inputmode="search" placeholder="英語・日本語で検索" autocomplete="off">
+      <button class="clr" id="qClr" aria-label="消去">×</button>
+    </div>
+    <div class="chips" id="majorChips"></div>
+    <div class="subchips" id="subChips"></div>
+    <div class="count" id="browseCount"></div>
+    <div id="list"></div>
+  </section>
+
+  <!-- ============ 暗記 ============ -->
+  <section id="view-study" class="hidden">
+    <div class="study-bar">
+      <div class="seg" id="dirSeg">
+        <button data-dir="en" class="on">英語 → 日本語</button>
+        <button data-dir="ja">日本語 → 英語</button>
+      </div>
+    </div>
+    <div class="study-scope">
+      <select id="scopeSel"></select>
+    </div>
+    <div class="study-ctrl" style="margin-top:0;margin-bottom:14px;">
+      <button class="nav" id="shuffleBtn">🔀 シャッフル</button>
+    </div>
+    <div class="flash" id="flash">
+      <div class="qlabel" id="qlabel"></div>
+      <div class="front" id="cardFront"></div>
+      <div class="divider"></div>
+      <div class="back" id="cardBack"></div>
+      <div class="hint" id="flashHint">タップで答えを表示</div>
+    </div>
+    <div class="study-ctrl">
+      <button class="ico" id="prevBtn" aria-label="前へ">‹</button>
+      <button class="speak" id="studySpeak" aria-label="発音">🔊</button>
+      <button class="ico" id="nextBtn" aria-label="次へ">›</button>
+    </div>
+    <div class="progress"><span id="pbar"></span></div>
+    <div class="pcount" id="pcount"></div>
+  </section>
+
+  <!-- ============ お気に入り ============ -->
+  <section id="view-fav" class="hidden">
+    <div class="count" id="favCount"></div>
+    <div id="favList"></div>
+  </section>
+</main>
+
+<nav>
+  <div class="nwrap">
+    <button data-tab="browse" class="on"><span class="nem">📖</span>一覧</button>
+    <button data-tab="study"><span class="nem">🧠</span>暗記</button>
+    <button data-tab="fav"><span class="nem">★</span>お気に入り</button>
+  </div>
+</nav>
+
+<script>
+const RAW = [{"type":"major","text":"⭐ 日常会話の定型100（場面別）"},{"type":"section","text":"🗣 1. あいさつ・導入（10）"},{"type":"item","en":"How’s it going","ja":"調子どう"},{"type":"item","en":"What’s up","ja":"最近どう"},{"type":"item","en":"Long time no see","ja":"久しぶり"},{"type":"item","en":"How have you been","ja":"元気だった？"},{"type":"item","en":"Nice to see you","ja":"会えて嬉しい"},{"type":"item","en":"Good to see you again","ja":"また会えて嬉しい"},{"type":"item","en":"What are you up to","ja":"今何してるの"},{"type":"item","en":"How’s your day going","ja":"今日どう？"},{"type":"item","en":"How’s everything","ja":"いろいろどう？"},{"type":"item","en":"Good morning","ja":"おはよう"},{"type":"section","text":"💬 2. 相づち・反応（10）"},{"type":"item","en":"I see","ja":"なるほど"},{"type":"item","en":"Makes sense","ja":"わかる"},{"type":"item","en":"Right","ja":"そうだね"},{"type":"item","en":"Exactly","ja":"まさに"},{"type":"item","en":"That’s true","ja":"確かに"},{"type":"item","en":"Really","ja":"本当に？"},{"type":"item","en":"Oh wow","ja":"へぇ"},{"type":"item","en":"Got it","ja":"了解"},{"type":"item","en":"Good point","ja":"いい指摘"},{"type":"item","en":"I get what you mean","ja":"言いたいことわかる"},{"type":"section","text":"❓ 3. 質問の定型（10）"},{"type":"item","en":"What do you mean","ja":"どういう意味？"},{"type":"item","en":"What do you think","ja":"どう思う？"},{"type":"item","en":"How was it","ja":"どうだった？"},{"type":"item","en":"What happened","ja":"何があった？"},{"type":"item","en":"Where did you go","ja":"どこ行ったの？"},{"type":"item","en":"When did that happen","ja":"いつの話？"},{"type":"item","en":"Who told you","ja":"誰が言ったの？"},{"type":"item","en":"Why is that","ja":"なんで？"},{"type":"item","en":"How do you know","ja":"どうして知ってるの？"},{"type":"item","en":"What’s going on","ja":"何が起きてるの？"},{"type":"section","text":"😊 4. 感情・気持ち（10）"},{"type":"item","en":"I’m happy","ja":"嬉しい"},{"type":"item","en":"I’m tired","ja":"疲れた"},{"type":"item","en":"I’m not sure","ja":"よくわからない"},{"type":"item","en":"I’m worried","ja":"心配"},{"type":"item","en":"I’m excited","ja":"ワクワク"},{"type":"item","en":"I’m bored","ja":"退屈"},{"type":"item","en":"I’m confused","ja":"混乱してる"},{"type":"item","en":"I feel good","ja":"気分がいい"},{"type":"item","en":"I feel bad","ja":"気分が悪い"},{"type":"item","en":"I’m relieved","ja":"ホッとした"},{"type":"section","text":"🧩 5. 意見を言う（10）"},{"type":"item","en":"I think so","ja":"そう思う"},{"type":"item","en":"I don’t think so","ja":"そうは思わない"},{"type":"item","en":"In my opinion","ja":"私の意見では"},{"type":"item","en":"I guess","ja":"たぶん"},{"type":"item","en":"I’m not sure but","ja":"よくわからないけど"},{"type":"item","en":"It depends","ja":"場合による"},{"type":"item","en":"That’s interesting","ja":"面白いね"},{"type":"item","en":"I agree","ja":"賛成"},{"type":"item","en":"I disagree","ja":"反対"},{"type":"item","en":"I’m not convinced","ja":"納得してない"},{"type":"section","text":"📅 6. 日常の話題（10）"},{"type":"item","en":"I went to work","ja":"仕事に行った"},{"type":"item","en":"I stayed home","ja":"家にいた"},{"type":"item","en":"I watched a movie","ja":"映画を見た"},{"type":"item","en":"I cooked dinner","ja":"夕食を作った"},{"type":"item","en":"I met a friend","ja":"友達に会った"},{"type":"item","en":"I took a walk","ja":"散歩した"},{"type":"item","en":"I cleaned my room","ja":"掃除した"},{"type":"item","en":"I went shopping","ja":"買い物した"},{"type":"item","en":"I read a book","ja":"本を読んだ"},{"type":"item","en":"I relaxed","ja":"ゆっくりした"},{"type":"section","text":"🧭 7. 依頼・お願い（10）"},{"type":"item","en":"Could you help me","ja":"手伝ってくれる？"},{"type":"item","en":"Can you wait a second","ja":"ちょっと待って"},{"type":"item","en":"Can you say that again","ja":"もう一度言って"},{"type":"item","en":"Can you speak slowly","ja":"ゆっくり話して"},{"type":"item","en":"Can you show me","ja":"見せて"},{"type":"item","en":"Can you explain","ja":"説明して"},{"type":"item","en":"Please go ahead","ja":"どうぞ"},{"type":"item","en":"Please wait","ja":"待って"},{"type":"item","en":"Please tell me","ja":"教えて"},{"type":"item","en":"Please try again","ja":"もう一度やって"},{"type":"section","text":"🛠 8. トラブル・困った時（10）"},{"type":"item","en":"I don’t understand","ja":"わからない"},{"type":"item","en":"I’m lost","ja":"迷った"},{"type":"item","en":"I can’t find it","ja":"見つからない"},{"type":"item","en":"I made a mistake","ja":"間違えた"},{"type":"item","en":"I forgot","ja":"忘れた"},{"type":"item","en":"I’m not sure what to do","ja":"どうすればいいかわからない"},{"type":"item","en":"I need help","ja":"助けが必要"},{"type":"item","en":"Something is wrong","ja":"何かおかしい"},{"type":"item","en":"It doesn’t work","ja":"動かない"},{"type":"item","en":"I’m confused","ja":"混乱してる"},{"type":"section","text":"🧑‍🤝‍🧑 9. 会話を続ける（10）"},{"type":"item","en":"By the way","ja":"ところで"},{"type":"item","en":"Speaking of that","ja":"そういえば"},{"type":"item","en":"That reminds me","ja":"思い出した"},{"type":"item","en":"Anyway","ja":"とにかく"},{"type":"item","en":"Back to the topic","ja":"話を戻すと"},{"type":"item","en":"What about you","ja":"あなたは？"},{"type":"item","en":"Tell me more","ja":"もっと教えて"},{"type":"item","en":"Go on","ja":"続けて"},{"type":"item","en":"Interesting, and then","ja":"それで？"},{"type":"item","en":"Let’s change the topic","ja":"話題を変えよう"},{"type":"section","text":"🎉 10. 終わりのあいさつ（10）"},{"type":"item","en":"See you later","ja":"またね"},{"type":"item","en":"See you tomorrow","ja":"また明日"},{"type":"item","en":"Talk to you soon","ja":"また話そう"},{"type":"item","en":"Have a good day","ja":"良い一日を"},{"type":"item","en":"Take care","ja":"気をつけて"},{"type":"item","en":"Nice talking to you","ja":"話せてよかった"},{"type":"item","en":"Let’s talk again","ja":"また話そう"},{"type":"item","en":"Thanks for your time","ja":"時間ありがとう"},{"type":"item","en":"Have a good night","ja":"おやすみ"},{"type":"item","en":"Bye for now","ja":"じゃあまた"},{"type":"major","text":"⭐ 会話を続ける表現100（完全版）"},{"type":"section","text":"🔵 1. 相手に話を続けさせる（25）"},{"type":"item","en":"Go on","ja":"続けて"},{"type":"item","en":"And then","ja":"それで"},{"type":"item","en":"Tell me more","ja":"もっと教えて"},{"type":"item","en":"What happened next","ja":"次は？"},{"type":"item","en":"Interesting, go ahead","ja":"面白い、続けて"},{"type":"item","en":"Really, why","ja":"本当に？なんで？"},{"type":"item","en":"How did that go","ja":"どうなった？"},{"type":"item","en":"What did you do then","ja":"その後どうした？"},{"type":"item","en":"What about after that","ja":"その後は？"},{"type":"item","en":"Can you explain more","ja":"もう少し説明して"},{"type":"item","en":"What do you mean exactly","ja":"具体的には？"},{"type":"item","en":"How did you feel","ja":"どう感じた？"},{"type":"item","en":"What surprised you","ja":"何が驚いた？"},{"type":"item","en":"What was the best part","ja":"一番良かったのは？"},{"type":"item","en":"What was the hardest part","ja":"一番大変だったのは？"},{"type":"item","en":"Why do you think so","ja":"なんでそう思う？"},{"type":"item","en":"How long did it take","ja":"どれくらいかかった？"},{"type":"item","en":"Who was with you","ja":"誰と？"},{"type":"item","en":"Where did that happen","ja":"どこで？"},{"type":"item","en":"When was that","ja":"いつ？"},{"type":"item","en":"What did they say","ja":"相手は何て言った？"},{"type":"item","en":"What did you say","ja":"あなたは何て言った？"},{"type":"item","en":"How did it end","ja":"最後どうなった？"},{"type":"item","en":"What’s your plan now","ja":"今後どうする？"},{"type":"item","en":"So what’s next","ja":"次は？"},{"type":"section","text":"🔵 2. 自分から話題を広げる（25）"},{"type":"item","en":"By the way","ja":"ところで"},{"type":"item","en":"Speaking of that","ja":"そういえば"},{"type":"item","en":"That reminds me","ja":"思い出した"},{"type":"item","en":"Actually","ja":"実は"},{"type":"item","en":"You know what","ja":"あのね"},{"type":"item","en":"Come to think of it","ja":"考えてみれば"},{"type":"item","en":"Now that you mention it","ja":"言われてみれば"},{"type":"item","en":"Funny thing is","ja":"面白いことに"},{"type":"item","en":"That makes me think","ja":"それで思ったんだけど"},{"type":"item","en":"Speaking of your story","ja":"あなたの話で思い出した"},{"type":"item","en":"It reminds me of something","ja":"それで思い出した"},{"type":"item","en":"I had a similar experience","ja":"似た経験がある"},{"type":"item","en":"That’s like what happened to me","ja":"私にも似たことがあった"},{"type":"item","en":"Let me tell you something","ja":"ちょっと話すね"},{"type":"item","en":"This might sound random","ja":"話が飛ぶけど"},{"type":"item","en":"It’s interesting because","ja":"面白いのは"},{"type":"item","en":"You know what I noticed","ja":"気づいたことがある"},{"type":"item","en":"I was thinking about that too","ja":"私もそれ考えてた"},{"type":"item","en":"That connects to something","ja":"それつながる話がある"},{"type":"item","en":"Let me add one thing","ja":"一つ付け加えると"},{"type":"item","en":"Here’s the thing","ja":"実はね"},{"type":"item","en":"You know what’s funny","ja":"面白い話がある"},{"type":"item","en":"I just remembered","ja":"今思い出した"},{"type":"item","en":"Speaking of yesterday","ja":"昨日の話だけど"},{"type":"item","en":"That brings up another point","ja":"別の話になるけど"},{"type":"section","text":"🔵 3. 相手に質問して話題を回す（25）"},{"type":"item","en":"What about you","ja":"あなたは？"},{"type":"item","en":"How about you","ja":"あなたはどう？"},{"type":"item","en":"Do you feel the same","ja":"同じ？"},{"type":"item","en":"Have you ever tried it","ja":"やったことある？"},{"type":"item","en":"What do you usually do","ja":"普段どうしてる？"},{"type":"item","en":"What’s your opinion","ja":"意見は？"},{"type":"item","en":"What do you recommend","ja":"おすすめは？"},{"type":"item","en":"What’s your experience","ja":"経験は？"},{"type":"item","en":"Do you like it","ja":"好き？"},{"type":"item","en":"Why do you like it","ja":"なんで好き？"},{"type":"item","en":"What do you usually eat","ja":"普段何食べる？"},{"type":"item","en":"Where do you usually go","ja":"普段どこ行く？"},{"type":"item","en":"Who do you usually go with","ja":"誰と行く？"},{"type":"item","en":"What’s your plan for today","ja":"今日の予定は？"},{"type":"item","en":"What’s your plan for tomorrow","ja":"明日は？"},{"type":"item","en":"What’s your favorite place","ja":"好きな場所は？"},{"type":"item","en":"What’s your favorite food","ja":"好きな食べ物は？"},{"type":"item","en":"What’s your favorite movie","ja":"好きな映画は？"},{"type":"item","en":"What’s your hobby","ja":"趣味は？"},{"type":"item","en":"How do you spend weekends","ja":"週末どう過ごす？"},{"type":"item","en":"Do you often travel","ja":"よく旅行する？"},{"type":"item","en":"Where do you want to go","ja":"どこ行きたい？"},{"type":"item","en":"What are you into lately","ja":"最近ハマってることは？"},{"type":"item","en":"What’s new with you","ja":"最近どう？"},{"type":"item","en":"Anything interesting recently","ja":"最近何かあった？"},{"type":"section","text":"🔵 4. 会話を滑らかに繋ぐ（25）"},{"type":"item","en":"Anyway","ja":"とにかく"},{"type":"item","en":"So","ja":"それで"},{"type":"item","en":"Well","ja":"ええと"},{"type":"item","en":"Actually","ja":"実は"},{"type":"item","en":"Basically","ja":"要するに"},{"type":"item","en":"In that case","ja":"その場合は"},{"type":"item","en":"At the same time","ja":"同時に"},{"type":"item","en":"On the other hand","ja":"一方で"},{"type":"item","en":"By the way","ja":"ところで"},{"type":"item","en":"Speaking of which","ja":"そういえば"},{"type":"item","en":"That said","ja":"とはいえ"},{"type":"item","en":"Even so","ja":"それでも"},{"type":"item","en":"In my case","ja":"私の場合は"},{"type":"item","en":"For example","ja":"例えば"},{"type":"item","en":"For instance","ja":"例えば"},{"type":"item","en":"To be honest","ja":"正直に言うと"},{"type":"item","en":"To tell the truth","ja":"実を言うと"},{"type":"item","en":"As far as I know","ja":"私の知る限り"},{"type":"item","en":"From my experience","ja":"経験から言うと"},{"type":"item","en":"In my opinion","ja":"私の意見では"},{"type":"item","en":"That’s interesting because","ja":"面白いのは"},{"type":"item","en":"The funny thing is","ja":"面白いことに"},{"type":"item","en":"The thing is","ja":"問題はね"},{"type":"item","en":"Here’s the point","ja":"要点は"},{"type":"item","en":"Let me think","ja":"ちょっと考えるね"},{"type":"major","text":"⭐ 質問表現100（完全版）"},{"type":"section","text":"🔵 1. 相手の近況を聞く（10）"},{"type":"item","en":"How’s it going","ja":"調子どう"},{"type":"item","en":"How have you been","ja":"元気だった？"},{"type":"item","en":"What’s new with you","ja":"最近どう？"},{"type":"item","en":"How’s your day going","ja":"今日どう？"},{"type":"item","en":"How was your day","ja":"今日どうだった？"},{"type":"item","en":"What are you up to today","ja":"今日何してる？"},{"type":"item","en":"How’s everything","ja":"いろいろどう？"},{"type":"item","en":"How’s work going","ja":"仕事どう？"},{"type":"item","en":"How’s your week been","ja":"今週どう？"},{"type":"item","en":"Anything interesting lately","ja":"最近何かあった？"},{"type":"section","text":"🔵 2. 相手の意見を聞く（10）"},{"type":"item","en":"What do you think","ja":"どう思う"},{"type":"item","en":"What’s your opinion","ja":"意見は？"},{"type":"item","en":"Do you agree","ja":"賛成？"},{"type":"item","en":"Why do you think so","ja":"なんでそう思う？"},{"type":"item","en":"What would you do","ja":"あなたならどうする？"},{"type":"item","en":"What’s your point of view","ja":"見解は？"},{"type":"item","en":"How do you feel about it","ja":"どう感じる？"},{"type":"item","en":"Do you think it’s good","ja":"良いと思う？"},{"type":"item","en":"Do you think it will work","ja":"うまくいくと思う？"},{"type":"item","en":"What’s the best option","ja":"ベストは？"},{"type":"section","text":"🔵 3. 相手の経験を聞く（10）"},{"type":"item","en":"Have you ever tried it","ja":"やったことある？"},{"type":"item","en":"Have you been there","ja":"行ったことある？"},{"type":"item","en":"Have you seen it","ja":"見たことある？"},{"type":"item","en":"Have you heard about it","ja":"聞いたことある？"},{"type":"item","en":"What was your experience","ja":"経験は？"},{"type":"item","en":"When did you try it","ja":"いつ試した？"},{"type":"item","en":"Who did you go with","ja":"誰と行った？"},{"type":"item","en":"How was your first time","ja":"初めてどうだった？"},{"type":"item","en":"What did you learn","ja":"何を学んだ？"},{"type":"item","en":"Would you do it again","ja":"またやる？"},{"type":"section","text":"🔵 4. 好みを聞く（10）"},{"type":"item","en":"What’s your favorite food","ja":"好きな食べ物は？"},{"type":"item","en":"What’s your favorite movie","ja":"好きな映画は？"},{"type":"item","en":"What music do you like","ja":"好きな音楽は？"},{"type":"item","en":"What do you usually watch","ja":"普段何見る？"},{"type":"item","en":"What do you like to do","ja":"何するのが好き？"},{"type":"item","en":"Do you like cooking","ja":"料理好き？"},{"type":"item","en":"Do you like traveling","ja":"旅行好き？"},{"type":"item","en":"What’s your favorite place","ja":"好きな場所は？"},{"type":"item","en":"What’s your favorite season","ja":"好きな季節は？"},{"type":"item","en":"What’s your favorite hobby","ja":"趣味は？"},{"type":"section","text":"🔵 5. 日常生活について聞く（10）"},{"type":"item","en":"What did you do today","ja":"今日何した？"},{"type":"item","en":"What are you doing now","ja":"今何してる？"},{"type":"item","en":"What time do you wake up","ja":"何時に起きる？"},{"type":"item","en":"What do you usually eat","ja":"普段何食べる？"},{"type":"item","en":"Where do you usually go","ja":"普段どこ行く？"},{"type":"item","en":"How do you spend weekends","ja":"週末どう過ごす？"},{"type":"item","en":"Do you cook often","ja":"よく料理する？"},{"type":"item","en":"Do you exercise","ja":"運動する？"},{"type":"item","en":"What’s your routine","ja":"ルーティンは？"},{"type":"item","en":"Do you work every day","ja":"毎日働く？"},{"type":"section","text":"🔵 6. 未来の予定を聞く（10）"},{"type":"item","en":"What’s your plan for today","ja":"今日の予定は？"},{"type":"item","en":"What’s your plan for tomorrow","ja":"明日は？"},{"type":"item","en":"What are you doing this weekend","ja":"週末何する？"},{"type":"item","en":"Any plans for tonight","ja":"今夜予定ある？"},{"type":"item","en":"Where do you want to go","ja":"どこ行きたい？"},{"type":"item","en":"What do you want to try","ja":"何を試したい？"},{"type":"item","en":"What’s your next goal","ja":"次の目標は？"},{"type":"item","en":"What are you looking forward to","ja":"楽しみにしてることは？"},{"type":"item","en":"Do you want to travel soon","ja":"旅行したい？"},{"type":"item","en":"What’s your dream plan","ja":"理想の予定は？"},{"type":"section","text":"🔵 7. 理由を聞く（10）"},{"type":"item","en":"Why is that","ja":"なんで？"},{"type":"item","en":"Why did you think so","ja":"なんでそう思った？"},{"type":"item","en":"Why did you choose that","ja":"なんでそれ選んだ？"},{"type":"item","en":"Why did it happen","ja":"なんで起きた？"},{"type":"item","en":"Why do you like it","ja":"なんで好き？"},{"type":"item","en":"Why not","ja":"なんでダメ？"},{"type":"item","en":"Why did you go there","ja":"なんでそこ行った？"},{"type":"item","en":"Why did you say that","ja":"なんでそう言った？"},{"type":"item","en":"Why do you think it works","ja":"なんでうまくいくと思う？"},{"type":"item","en":"Why do you think it failed","ja":"なんで失敗した？"},{"type":"section","text":"🔵 8. 詳細を聞く（10）"},{"type":"item","en":"What do you mean","ja":"どういう意味？"},{"type":"item","en":"What exactly happened","ja":"具体的に何が？"},{"type":"item","en":"Can you explain more","ja":"もっと説明して"},{"type":"item","en":"What was the problem","ja":"問題は何？"},{"type":"item","en":"What did they say","ja":"相手は何て言った？"},{"type":"item","en":"What did you say","ja":"あなたは何て言った？"},{"type":"item","en":"How did you solve it","ja":"どう解決した？"},{"type":"item","en":"How did it start","ja":"どう始まった？"},{"type":"item","en":"How did it end","ja":"どう終わった？"},{"type":"item","en":"What was the result","ja":"結果は？"},{"type":"section","text":"🔵 9. 相手の気持ちを聞く（10）"},{"type":"item","en":"How did you feel","ja":"どう感じた？"},{"type":"item","en":"Were you happy","ja":"嬉しかった？"},{"type":"item","en":"Were you surprised","ja":"驚いた？"},{"type":"item","en":"Were you nervous","ja":"緊張した？"},{"type":"item","en":"Were you scared","ja":"怖かった？"},{"type":"item","en":"Did it make you angry","ja":"怒った？"},{"type":"item","en":"Did it make you sad","ja":"悲しかった？"},{"type":"item","en":"Did you enjoy it","ja":"楽しかった？"},{"type":"item","en":"How do you feel now","ja":"今どう感じる？"},{"type":"item","en":"What made you feel that way","ja":"なんでそう感じた？"},{"type":"major","text":"⭐ 相づち表現100（完全版）"},{"type":"section","text":"🔵 1. 基本の相づち（15）"},{"type":"item","en":"Yeah","ja":"うん"},{"type":"item","en":"Right","ja":"そうだね"},{"type":"item","en":"I see","ja":"なるほど"},{"type":"item","en":"Okay","ja":"オーケー"},{"type":"item","en":"Got it","ja":"わかった"},{"type":"item","en":"Sure","ja":"もちろん"},{"type":"item","en":"Exactly","ja":"まさに"},{"type":"item","en":"True","ja":"確かに"},{"type":"item","en":"Makes sense","ja":"なるほどね"},{"type":"item","en":"I get it","ja":"わかる"},{"type":"item","en":"Totally","ja":"完全にそう"},{"type":"item","en":"Absolutely","ja":"その通り"},{"type":"item","en":"Definitely","ja":"間違いない"},{"type":"item","en":"For sure","ja":"そうだね"},{"type":"item","en":"I understand","ja":"理解したよ"},{"type":"section","text":"🔵 2. 驚き・興味（15）"},{"type":"item","en":"Really","ja":"本当に？"},{"type":"item","en":"Oh really","ja":"へぇ"},{"type":"item","en":"Wow","ja":"わぁ"},{"type":"item","en":"No way","ja":"まさか"},{"type":"item","en":"Seriously","ja":"マジで？"},{"type":"item","en":"You’re kidding","ja":"冗談でしょ"},{"type":"item","en":"That’s crazy","ja":"すごいね"},{"type":"item","en":"That’s interesting","ja":"面白いね"},{"type":"item","en":"That’s surprising","ja":"驚いた"},{"type":"item","en":"That’s amazing","ja":"すごい"},{"type":"item","en":"That’s cool","ja":"いいね"},{"type":"item","en":"That’s funny","ja":"面白い"},{"type":"item","en":"Oh wow","ja":"へぇ"},{"type":"item","en":"I didn’t know that","ja":"知らなかった"},{"type":"item","en":"Interesting","ja":"興味深い"},{"type":"section","text":"🔵 3. 同意・共感（15）"},{"type":"item","en":"I agree","ja":"同意"},{"type":"item","en":"I know","ja":"わかる"},{"type":"item","en":"I feel the same","ja":"同じ気持ち"},{"type":"item","en":"I think so too","ja":"私もそう思う"},{"type":"item","en":"Me too","ja":"私も"},{"type":"item","en":"Same here","ja":"同じく"},{"type":"item","en":"You’re right","ja":"その通り"},{"type":"item","en":"That’s true","ja":"確かに"},{"type":"item","en":"I get what you mean","ja":"言いたいことわかる"},{"type":"item","en":"I know what you mean","ja":"わかるよ"},{"type":"item","en":"I’ve been there","ja":"その気持ちわかる"},{"type":"item","en":"I can relate","ja":"共感する"},{"type":"item","en":"Totally agree","ja":"完全に同意"},{"type":"item","en":"Good point","ja":"いい指摘"},{"type":"item","en":"That makes sense","ja":"なるほど"},{"type":"section","text":"🔵 4. 聞いているサイン（15）"},{"type":"item","en":"Uhhuh","ja":"うんうん"},{"type":"item","en":"Mmhm","ja":"なるほど"},{"type":"item","en":"I’m listening","ja":"聞いてるよ"},{"type":"item","en":"Go on","ja":"続けて"},{"type":"item","en":"I see what you mean","ja":"言いたいことわかる"},{"type":"item","en":"I hear you","ja":"聞いてるよ"},{"type":"item","en":"I’m with you","ja":"話についていってる"},{"type":"item","en":"That makes sense","ja":"なるほど"},{"type":"item","en":"I follow you","ja":"話についていけてる"},{"type":"item","en":"I get your point","ja":"要点わかる"},{"type":"item","en":"I’m following","ja":"理解してる"},{"type":"item","en":"I understand your point","ja":"言いたいこと理解した"},{"type":"item","en":"I see your point","ja":"なるほどね"},{"type":"item","en":"That’s clear","ja":"わかった"},{"type":"item","en":"I get it now","ja":"今わかった"},{"type":"section","text":"🔵 5. 驚き＋共感（15）"},{"type":"item","en":"Oh really","ja":"へぇ"},{"type":"item","en":"That must be hard","ja":"大変だったね"},{"type":"item","en":"That must be nice","ja":"いいね"},{"type":"item","en":"That sounds tough","ja":"つらそう"},{"type":"item","en":"That sounds fun","ja":"楽しそう"},{"type":"item","en":"That sounds amazing","ja":"すごいね"},{"type":"item","en":"That sounds interesting","ja":"面白そう"},{"type":"item","en":"That sounds complicated","ja":"複雑そう"},{"type":"item","en":"That sounds stressful","ja":"ストレスだね"},{"type":"item","en":"That sounds exciting","ja":"ワクワクするね"},{"type":"item","en":"I can imagine","ja":"想像できる"},{"type":"item","en":"I bet","ja":"そうだろうね"},{"type":"item","en":"I guess so","ja":"そうかもね"},{"type":"item","en":"I suppose so","ja":"そうだと思う"},{"type":"item","en":"I didn’t expect that","ja":"予想外"},{"type":"section","text":"🔵 6. 相手を促す（15）"},{"type":"item","en":"And then","ja":"それで？"},{"type":"item","en":"What happened next","ja":"次は？"},{"type":"item","en":"Go ahead","ja":"どうぞ"},{"type":"item","en":"Tell me more","ja":"もっと教えて"},{"type":"item","en":"I want to hear more","ja":"続きを聞きたい"},{"type":"item","en":"Keep going","ja":"続けて"},{"type":"item","en":"I’m curious","ja":"気になる"},{"type":"item","en":"What else","ja":"他には？"},{"type":"item","en":"Anything else","ja":"他に何か？"},{"type":"item","en":"Then what","ja":"それで？"},{"type":"item","en":"So what happened","ja":"どうなった？"},{"type":"item","en":"And after that","ja":"その後は？"},{"type":"item","en":"That reminds me","ja":"それで思い出した"},{"type":"item","en":"Speaking of that","ja":"そういえば"},{"type":"item","en":"Interesting, go on","ja":"面白い、続けて"},{"type":"major","text":"⭐ 会話の導入表現100（完全版）"},{"type":"section","text":"🔵 1. 超シンプル導入（15）"},{"type":"item","en":"So","ja":"それでさ"},{"type":"item","en":"Well","ja":"ええと"},{"type":"item","en":"You know","ja":"あのね"},{"type":"item","en":"Guess what","ja":"聞いてよ"},{"type":"item","en":"Hey, by the way","ja":"ところでさ"},{"type":"item","en":"Actually","ja":"実は"},{"type":"item","en":"Oh, speaking of that","ja":"そういえば"},{"type":"item","en":"One thing","ja":"一つ言いたい"},{"type":"item","en":"I was thinking","ja":"思ってたんだけど"},{"type":"item","en":"You know what","ja":"あのね"},{"type":"item","en":"Funny thing is","ja":"面白いことに"},{"type":"item","en":"Let me tell you something","ja":"ちょっと話すね"},{"type":"item","en":"This might sound random","ja":"話が飛ぶけど"},{"type":"item","en":"I just remembered","ja":"今思い出した"},{"type":"item","en":"Here’s something","ja":"ちょっとした話がある"},{"type":"section","text":"🔵 2. 相手に話題を振る導入（15）"},{"type":"item","en":"Can I ask you something","ja":"ちょっと聞いていい？"},{"type":"item","en":"I’m curious about something","ja":"気になることがある"},{"type":"item","en":"What do you think about this","ja":"これどう思う？"},{"type":"item","en":"Let me ask you this","ja":"一つ聞きたい"},{"type":"item","en":"I wonder","ja":"ちょっと思ったんだけど"},{"type":"item","en":"Have you noticed","ja":"気づいた？"},{"type":"item","en":"Do you know","ja":"知ってる？"},{"type":"item","en":"I’ve been meaning to ask","ja":"聞こうと思ってた"},{"type":"item","en":"Quick question","ja":"ちょっと質問"},{"type":"item","en":"Here’s a question","ja":"質問がある"},{"type":"item","en":"I’m wondering","ja":"ちょっと気になって"},{"type":"item","en":"Tell me something","ja":"一つ教えて"},{"type":"item","en":"I want your opinion","ja":"意見を聞きたい"},{"type":"item","en":"Let me ask you","ja":"聞かせて"},{"type":"item","en":"Can I get your thoughts","ja":"考えを聞かせて"},{"type":"section","text":"🔵 3. 自分の話を始める導入（15）"},{"type":"item","en":"Something happened today","ja":"今日ちょっとあって"},{"type":"item","en":"You won’t believe this","ja":"信じられないかもだけど"},{"type":"item","en":"Let me tell you what happened","ja":"今日の出来事話すね"},{"type":"item","en":"I had an interesting day","ja":"今日は面白い日だった"},{"type":"item","en":"I’ve got a story","ja":"話がある"},{"type":"item","en":"Something funny happened","ja":"面白いことがあった"},{"type":"item","en":"You know what happened","ja":"聞いてよ"},{"type":"item","en":"Let me share something","ja":"ちょっと共有したい"},{"type":"item","en":"I realized something","ja":"気づいたことがある"},{"type":"item","en":"I noticed something","ja":"気づいたんだけど"},{"type":"item","en":"I’ve been thinking","ja":"考えてたんだけど"},{"type":"item","en":"Here’s the thing","ja":"実はね"},{"type":"item","en":"This is funny","ja":"面白いんだけど"},{"type":"item","en":"This might sound strange","ja":"変に聞こえるかもだけど"},{"type":"item","en":"I want to tell you something","ja":"話したいことがある"},{"type":"section","text":"🔵 4. 話題を変える導入（15）"},{"type":"item","en":"By the way","ja":"ところで"},{"type":"item","en":"Speaking of that","ja":"そういえば"},{"type":"item","en":"On a different note","ja":"話は変わるけど"},{"type":"item","en":"Changing the topic","ja":"話題変えるけど"},{"type":"item","en":"Before I forget","ja":"忘れないうちに"},{"type":"item","en":"That reminds me","ja":"思い出した"},{"type":"item","en":"While we’re talking","ja":"話のついでに"},{"type":"item","en":"Speaking of yesterday","ja":"昨日の話だけど"},{"type":"item","en":"This is unrelated but","ja":"関係ないけど"},{"type":"item","en":"Different topic","ja":"別の話だけど"},{"type":"item","en":"Let me switch topics","ja":"話題変えるね"},{"type":"item","en":"On another subject","ja":"別の話題だけど"},{"type":"item","en":"While I remember","ja":"思い出したうちに"},{"type":"item","en":"Something else","ja":"別のことだけど"},{"type":"item","en":"This just came to mind","ja":"今思いついたんだけど"},{"type":"section","text":"🔵 5. 相手に興味を示す導入（15）"},{"type":"item","en":"I was thinking about what you said","ja":"あなたの話を考えてた"},{"type":"item","en":"About what you mentioned","ja":"さっきの話だけど"},{"type":"item","en":"I wanted to ask you more","ja":"もっと聞きたい"},{"type":"item","en":"That thing you said earlier","ja":"さっきの話で"},{"type":"item","en":"I’ve been thinking about your story","ja":"あなたの話を思い返してた"},{"type":"item","en":"Remember what you said","ja":"言ってたよね"},{"type":"item","en":"I want to hear more about that","ja":"もっと聞かせて"},{"type":"item","en":"That was interesting","ja":"あれ面白かった"},{"type":"item","en":"I was curious about that","ja":"気になってた"},{"type":"item","en":"Tell me more about that","ja":"その話もっと"},{"type":"item","en":"I didn’t ask earlier","ja":"さっき聞きそびれたけど"},{"type":"item","en":"I forgot to ask","ja":"聞き忘れたけど"},{"type":"item","en":"I wanted to follow up","ja":"続きを聞きたい"},{"type":"item","en":"That part was interesting","ja":"あの部分面白かった"},{"type":"item","en":"I’ve been meaning to ask you","ja":"聞こうと思ってた"},{"type":"section","text":"🔵 6. 軽い雑談の導入（15）"},{"type":"item","en":"Nice weather today","ja":"いい天気だね"},{"type":"item","en":"It’s been busy lately","ja":"最近忙しいね"},{"type":"item","en":"It’s been hot lately","ja":"最近暑いね"},{"type":"item","en":"Did you sleep well","ja":"よく眠れた？"},{"type":"item","en":"How’s your morning","ja":"朝どう？"},{"type":"item","en":"How’s your afternoon","ja":"午後どう？"},{"type":"item","en":"How’s your evening","ja":"夜どう？"},{"type":"item","en":"Busy day","ja":"忙しい日だね"},{"type":"item","en":"Long day","ja":"長い一日だったね"},{"type":"item","en":"Rough day","ja":"大変な日だったね"},{"type":"item","en":"Good day so far","ja":"今のところ良い日？"},{"type":"item","en":"Any plans today","ja":"今日予定ある？"},{"type":"item","en":"Anything fun today","ja":"何か楽しいことあった？"},{"type":"item","en":"How’s your week","ja":"今週どう？"},{"type":"item","en":"How’s life","ja":"元気にしてる？"}];
+
+/* ---------- build data tree + flat list ---------- */
+const MAJORS = [];
+const ITEMS = [];
+(function(){
+  let curMajor=null, curSection=null, id=0;
+  for(const b of RAW){
+    if(b.type==='major'){
+      curMajor={name:b.text, idx:MAJORS.length, sections:[]};
+      MAJORS.push(curMajor); curSection=null;
+    }else if(b.type==='section'){
+      curSection={name:b.text, idx:(curMajor?curMajor.sections.length:0), items:[]};
+      if(curMajor) curMajor.sections.push(curSection);
+    }else if(b.type==='item'){
+      const it={id:id++, en:b.en, ja:b.ja,
+        mIdx:curMajor?curMajor.idx:-1, sIdx:curSection?curSection.idx:-1,
+        mName:curMajor?curMajor.name:'', sName:curSection?curSection.name:''};
+      if(curSection) curSection.items.push(it);
+      ITEMS.push(it);
+    }
+  }
+})();
+const BYID = {}; ITEMS.forEach(it=>BYID[it.id]=it);
+
+document.getElementById('hcount').textContent = ITEMS.length + ' フレーズ';
+
+/* ---------- favorites (persist if available) ---------- */
+const FAV_KEY='eikaiwa_fav_v1';
+let favs = new Set();
+try{ const s=localStorage.getItem(FAV_KEY); if(s) favs=new Set(JSON.parse(s)); }catch(e){}
+function saveFavs(){ try{ localStorage.setItem(FAV_KEY, JSON.stringify([...favs])); }catch(e){} }
+function toggleFav(id){ if(favs.has(id))favs.delete(id); else favs.add(id); saveFavs(); }
+
+/* ---------- speech ---------- */
+let enVoice=null;
+function pickVoice(){
+  const vs=window.speechSynthesis?window.speechSynthesis.getVoices():[];
+  enVoice = vs.find(v=>/^en[-_]?US/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
+}
+if(window.speechSynthesis){
+  pickVoice();
+  window.speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text, el){
+  if(!window.speechSynthesis){ return; }
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.9; u.pitch=1;
+  if(enVoice) u.voice=enVoice;
+  if(el){ el.classList.add('speaking'); u.onend=u.onerror=()=>el.classList.remove('speaking'); }
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function cardHTML(it){
+  const on = favs.has(it.id)?' on':'';
+  return '<div class="card" data-id="'+it.id+'">'
+    + '<div class="en">'+esc(it.en)+'</div>'
+    + '<div class="ja">'+esc(it.ja)+'</div>'
+    + '<div class="tag">'+esc(it.sName)+'</div>'
+    + '<div class="row">'
+    +   '<button class="btn-ic speak" data-act="speak"><span class="em">🔊</span>発音</button>'
+    +   '<button class="btn-ic fav'+on+'" data-act="fav"><span class="em">'+(on?'★':'☆')+'</span>保存</button>'
+    + '</div></div>';
+}
+function bindCards(container){
+  container.querySelectorAll('.card').forEach(card=>{
+    const id=+card.dataset.id, it=BYID[id];
+    card.querySelector('[data-act="speak"]').addEventListener('click',e=>{e.stopPropagation();speak(it.en,card);});
+    card.querySelector('[data-act="fav"]').addEventListener('click',e=>{
+      e.stopPropagation(); toggleFav(id);
+      const b=e.currentTarget; const now=favs.has(id);
+      b.classList.toggle('on',now); b.querySelector('.em').textContent=now?'★':'☆';
+      if(currentTab==='fav') renderFav();
+    });
+  });
+}
+
+/* ---------- BROWSE ---------- */
+let fMajor='all', fSub='all', query='';
+const majorChips=document.getElementById('majorChips');
+const subChips=document.getElementById('subChips');
+const listEl=document.getElementById('list');
+const browseCount=document.getElementById('browseCount');
+
+function shortMajor(name){ // strip leading star/emoji + tidy
+  return name.replace(/^[⭐★\s]+/,'').replace(/（.*?）/,'').trim();
+}
+function buildMajorChips(){
+  let h='<button class="chip'+(fMajor==='all'?' on':'')+'" data-m="all">すべて</button>';
+  MAJORS.forEach(m=>{
+    h+='<button class="chip'+(fMajor===m.idx?' on':'')+'" data-m="'+m.idx+'">'+esc(shortMajor(m.name))+'</button>';
+  });
+  majorChips.innerHTML=h;
+  majorChips.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    fMajor = c.dataset.m==='all'?'all':+c.dataset.m; fSub='all';
+    buildMajorChips(); buildSubChips(); renderBrowse();
+  }));
+}
+function buildSubChips(){
+  if(fMajor==='all'){ subChips.innerHTML=''; return; }
+  const m=MAJORS[fMajor];
+  let h='<button class="subchip'+(fSub==='all'?' on':'')+'" data-s="all">全カテゴリ</button>';
+  m.sections.forEach(s=>{
+    h+='<button class="subchip'+(fSub===s.idx?' on':'')+'" data-s="'+s.idx+'">'+esc(s.name.replace(/^[^\s]*\s*/,''))+'</button>';
+  });
+  subChips.innerHTML=h;
+  subChips.querySelectorAll('.subchip').forEach(c=>c.addEventListener('click',()=>{
+    fSub = c.dataset.s==='all'?'all':+c.dataset.s;
+    buildSubChips(); renderBrowse();
+  }));
+}
+function filteredItems(){
+  const q=query.trim().toLowerCase();
+  return ITEMS.filter(it=>{
+    if(fMajor!=='all' && it.mIdx!==fMajor) return false;
+    if(fSub!=='all' && it.sIdx!==fSub) return false;
+    if(q && !(it.en.toLowerCase().includes(q) || it.ja.toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+function renderBrowse(){
+  const items=filteredItems();
+  browseCount.textContent = items.length+' 件';
+  if(!items.length){
+    listEl.innerHTML='<div class="empty"><span class="big">🔍</span>該当するフレーズがありません。<br>検索語やカテゴリを変えてみてください。</div>';
+    return;
+  }
+  listEl.innerHTML=items.map(cardHTML).join('');
+  bindCards(listEl);
+}
+
+const qInput=document.getElementById('q'), qClr=document.getElementById('qClr');
+qInput.addEventListener('input',()=>{
+  query=qInput.value; qClr.style.display=query?'block':'none'; renderBrowse();
+});
+qClr.addEventListener('click',()=>{ query=''; qInput.value=''; qClr.style.display='none'; renderBrowse(); qInput.focus(); });
+document.getElementById('tipX').addEventListener('click',()=>{ document.getElementById('tip').style.display='none'; });
+
+/* ---------- STUDY ---------- */
+let dir='en', scope='all', deck=[], pos=0, revealed=false;
+const scopeSel=document.getElementById('scopeSel');
+const flash=document.getElementById('flash');
+const qlabel=document.getElementById('qlabel');
+const cardFront=document.getElementById('cardFront');
+const cardBack=document.getElementById('cardBack');
+const pbar=document.getElementById('pbar');
+const pcount=document.getElementById('pcount');
+
+function buildScopeOptions(){
+  let h='<option value="all">すべて（'+ITEMS.length+'）</option>';
+  h+='<option value="fav">★ お気に入り</option>';
+  MAJORS.forEach(m=>{
+    h+='<option value="m'+m.idx+'">'+esc(shortMajor(m.name))+'</option>';
+    m.sections.forEach(s=>{
+      h+='<option value="s'+m.idx+'_'+s.idx+'">　- '+esc(s.name.replace(/^[^\s]*\s*/,''))+'</option>';
+    });
+  });
+  scopeSel.innerHTML=h;
+}
+function scopeItems(){
+  if(scope==='all') return ITEMS.slice();
+  if(scope==='fav') return ITEMS.filter(it=>favs.has(it.id));
+  if(scope[0]==='m'){ const mi=+scope.slice(1); return ITEMS.filter(it=>it.mIdx===mi); }
+  if(scope[0]==='s'){ const p=scope.slice(1).split('_'); const mi=+p[0],si=+p[1];
+    return ITEMS.filter(it=>it.mIdx===mi && it.sIdx===si); }
+  return ITEMS.slice();
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function loadDeck(doShuffle){
+  deck=scopeItems(); if(doShuffle) shuffle(deck);
+  pos=0; revealed=false; renderCard();
+}
+function renderCard(){
+  if(!deck.length){
+    qlabel.textContent='';
+    cardFront.className='front';
+    cardFront.innerHTML='<span style="font-size:16px;color:#9AA8B6;font-weight:400">このカテゴリにフレーズがありません</span>';
+    cardBack.textContent='';
+    flash.classList.remove('revealed'); flash.classList.add('no-card');
+    pbar.style.width='0%'; pcount.textContent='0 / 0';
+    return;
+  }
+  flash.classList.remove('no-card');
+  const it=deck[pos];
+  const frontJa = dir==='ja';
+  qlabel.textContent = frontJa?'日本語':'ENGLISH';
+  cardFront.textContent = frontJa?it.ja:it.en;
+  cardFront.className = 'front'+(frontJa?' ja':'');
+  cardBack.textContent = frontJa?it.en:it.ja;
+  cardBack.className = 'back'+(frontJa?'':' ja');
+  revealed=false; flash.classList.remove('revealed');
+  pbar.style.width = ((pos+1)/deck.length*100)+'%';
+  pcount.textContent=(pos+1)+' / '+deck.length;
+}
+flash.addEventListener('click',()=>{
+  if(!deck.length) return;
+  revealed=!revealed; flash.classList.toggle('revealed',revealed);
+});
+document.getElementById('dirSeg').querySelectorAll('button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    dir=b.dataset.dir;
+    document.getElementById('dirSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    renderCard();
+  });
+});
+scopeSel.addEventListener('change',()=>{ scope=scopeSel.value; loadDeck(false); });
+document.getElementById('shuffleBtn').addEventListener('click',()=>loadDeck(true));
+document.getElementById('prevBtn').addEventListener('click',()=>{ if(!deck.length)return; pos=(pos-1+deck.length)%deck.length; renderCard(); });
+document.getElementById('nextBtn').addEventListener('click',()=>{ if(!deck.length)return; pos=(pos+1)%deck.length; renderCard(); });
+document.getElementById('studySpeak').addEventListener('click',()=>{ if(deck.length) speak(deck[pos].en, flash); });
+
+/* ---------- FAVORITES ---------- */
+const favListEl=document.getElementById('favList');
+const favCountEl=document.getElementById('favCount');
+function renderFav(){
+  const items=ITEMS.filter(it=>favs.has(it.id));
+  favCountEl.textContent=items.length+' 件保存中';
+  if(!items.length){
+    favListEl.innerHTML='<div class="empty"><span class="big">☆</span>お気に入りはまだありません。<br>一覧で「保存」をタップすると、<br>ここに集まります。</div>';
+    return;
+  }
+  favListEl.innerHTML=items.map(cardHTML).join('');
+  bindCards(favListEl);
+}
+
+/* ---------- tabs ---------- */
+let currentTab='browse';
+const views={browse:document.getElementById('view-browse'),study:document.getElementById('view-study'),fav:document.getElementById('view-fav')};
+const navBtns=document.querySelectorAll('nav button');
+function setTab(t){
+  currentTab=t;
+  for(const k in views) views[k].classList.toggle('hidden',k!==t);
+  navBtns.forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  if(t==='fav') renderFav();
+  if(t==='study' && !deck.length) loadDeck(false);
+  window.scrollTo(0,0);
+}
+navBtns.forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+
+/* ---------- init ---------- */
+buildMajorChips(); buildSubChips(); renderBrowse();
+buildScopeOptions(); loadDeck(false);
+</script>
+</body>
+</html>
