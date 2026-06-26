@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="住まいの困った">
+<meta name="theme-color" content="#1F4E79">
+<title>住まいの困った 応急ガイド</title>
+<style>
+  :root{
+    --navy:#1F4E79; --navy-deep:#15375B; --gold:#E0A23B; --gold-soft:#FBF1DC;
+    --ink:#1B2733; --muted:#5B6B7C; --paper:#F4F6FA; --card:#FFFFFF;
+    --line:#E3E9F0; --line-soft:#EEF2F7; --shade:#F6F8FB; --line-green:#06C755;
+    --warn:#B4453B; --warn-soft:#FBECEA;
+    --font-display:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic Pro","Hiragino Sans",system-ui,sans-serif;
+    --font-body:-apple-system,BlinkMacSystemFont,system-ui,"Hiragino Sans","Helvetica Neue",sans-serif;
+    --nav-h:64px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--font-body);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.6;
+    -webkit-text-size-adjust:100%;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));}
+  .wrap{max-width:560px;margin:0 auto;}
+
+  header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,var(--navy),var(--navy-deep));
+    color:#fff;padding:calc(env(safe-area-inset-top) + 13px) 18px 13px;box-shadow:0 2px 10px rgba(21,55,91,.18);}
+  header .hwrap{max-width:560px;margin:0 auto;}
+  header h1{font-family:var(--font-display);font-size:20px;font-weight:700;margin:0;letter-spacing:.02em;}
+  header .sub{font-size:12px;color:#C8D8EA;margin-top:2px;}
+
+  main{padding:16px 14px 8px;}
+
+  .search{position:relative;margin-bottom:12px;}
+  .search input{width:100%;font-family:var(--font-body);font-size:16px;color:var(--ink);
+    padding:13px 14px 13px 42px;border:1.5px solid var(--line);border-radius:13px;background:var(--card);outline:none;}
+  .search input:focus{border-color:var(--navy);}
+  .search .ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:17px;}
+  .search .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:none;color:var(--muted);font-size:20px;padding:6px;display:none;}
+
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none;}
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{flex:none;font-family:var(--font-display);font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;
+    border:1.5px solid var(--line);background:var(--card);color:var(--muted);white-space:nowrap;cursor:pointer;}
+  .chip.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .count{font-size:12.5px;color:var(--muted);margin:0 4px 10px;}
+
+  .item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:15px 14px;margin-bottom:10px;cursor:pointer;box-shadow:0 1px 2px rgba(27,39,51,.04);}
+  .item:active{background:var(--shade);}
+  .item .txt{flex:1;min-width:0;}
+  .item .ttl{font-size:16.5px;font-weight:600;color:var(--navy-deep);line-height:1.4;}
+  .item .ctag{font-size:11px;color:var(--muted);margin-top:3px;}
+  .item .chev{flex:none;color:#B7C2CF;font-size:22px;line-height:1;}
+
+  .empty{text-align:center;color:var(--muted);padding:56px 24px;font-size:15px;line-height:1.8;}
+  .empty .big{font-size:34px;display:block;margin-bottom:10px;}
+
+  /* 相談 tab */
+  .kokoro{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+  .kokoro h2{font-family:var(--font-display);font-size:17px;color:var(--navy-deep);margin:0 0 10px;}
+  .kokoro ul{margin:0;padding-left:0;list-style:none;}
+  .kokoro li{position:relative;padding:7px 0 7px 26px;font-size:15px;border-bottom:1px solid var(--line-soft);}
+  .kokoro li:last-child{border-bottom:none;}
+  .kokoro li::before{content:"✓";position:absolute;left:2px;top:7px;color:var(--gold);font-weight:700;}
+  .kokoro li b{color:var(--navy);}
+  .consult-lead{font-size:15px;color:var(--ink);margin:0 4px 14px;line-height:1.7;}
+  .howto{background:var(--gold-soft);border:1px solid #F0DFB6;border-radius:14px;padding:14px 16px;font-size:13.5px;color:#7A5A1E;line-height:1.7;}
+  .howto b{color:#5E4413;}
+
+  .line-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+    background:var(--line-green);color:#fff;border:none;border-radius:14px;padding:16px;
+    font-family:var(--font-display);font-weight:700;font-size:17px;cursor:pointer;margin-bottom:16px;
+    box-shadow:0 3px 10px rgba(6,199,85,.28);}
+  .line-btn:active{filter:brightness(.95);}
+  .line-btn .em{font-size:20px;}
+
+  /* detail sheet */
+  .overlay{position:fixed;inset:0;z-index:50;background:rgba(20,40,64,.45);
+    display:none;align-items:flex-end;justify-content:center;}
+  .overlay.on{display:flex;}
+  .sheet{background:var(--paper);width:100%;max-width:560px;max-height:92vh;border-radius:20px 20px 0 0;
+    display:flex;flex-direction:column;animation:rise .22s ease;}
+  @keyframes rise{from{transform:translateY(24px);opacity:.4;}to{transform:translateY(0);opacity:1;}}
+  .sheet-head{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--line);}
+  .sheet-head .stag{font-size:11px;color:#fff;background:var(--navy);padding:3px 9px;border-radius:999px;font-family:var(--font-display);font-weight:600;flex:none;}
+  .sheet-head h2{font-family:var(--font-display);font-size:18px;color:var(--navy-deep);margin:0;flex:1;line-height:1.35;}
+  .sheet-head .close{flex:none;border:none;background:var(--line-soft);color:var(--muted);width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer;}
+  .sheet-body{overflow-y:auto;padding:16px 16px 4px;-webkit-overflow-scrolling:touch;}
+  .lead{font-size:15.5px;color:var(--ink);margin:0 0 16px;line-height:1.7;}
+  .blk{margin-bottom:15px;}
+  .blk .lab{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--navy);
+    background:var(--shade);border:1px solid var(--line);padding:3px 10px;border-radius:8px;margin-bottom:7px;}
+  .blk.warn .lab{color:var(--warn);background:var(--warn-soft);border-color:#F0D3CF;}
+  .blk p{margin:0;font-size:15px;line-height:1.75;color:var(--ink);}
+  .mansion-note{background:#EEF4FB;border:1px solid #D7E5F4;border-radius:11px;padding:11px 13px;font-size:13.5px;color:#2C4A66;line-height:1.7;margin-bottom:15px;}
+  .sheet-foot{padding:12px 16px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--card);}
+  .foot-lead{font-size:13.5px;color:var(--muted);text-align:center;margin:0 0 10px;line-height:1.6;}
+
+  nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);
+    backdrop-filter:saturate(160%) blur(10px);border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom);display:flex;}
+  nav .nwrap{max-width:560px;margin:0 auto;display:flex;width:100%;}
+  nav button{flex:1;border:none;background:none;height:var(--nav-h);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:3px;color:var(--muted);font-family:var(--font-display);font-size:11px;font-weight:600;cursor:pointer;}
+  nav button .nem{font-size:21px;line-height:1;}
+  nav button.on{color:var(--navy);}
+
+  .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 24px);transform:translateX(-50%) translateY(10px);
+    background:var(--navy-deep);color:#fff;padding:12px 18px;border-radius:12px;font-size:13.5px;max-width:88%;
+    text-align:center;opacity:0;pointer-events:none;transition:.25s;z-index:60;line-height:1.6;}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+  .hidden{display:none !important;}
+</style>
+</head>
+<body>
+<header><div class="hwrap">
+  <h1>住まいの困った 応急ガイド</h1>
+  <div class="sub">不動産業務40年・地域密着　まずの一手と相談窓口</div>
+</div></header>
+
+<main class="wrap">
+  <!-- 戸建て / マンション 共通リスト -->
+  <section id="view-list">
+    <div class="search">
+      <span class="ic">🔍</span>
+      <input id="q" type="search" inputmode="search" placeholder="症状で検索（例：水漏れ、鍵、エアコン）" autocomplete="off">
+      <button class="clr" id="qClr" aria-label="消去">×</button>
+    </div>
+    <div class="chips" id="catChips"></div>
+    <div class="count" id="listCount"></div>
+    <div id="list"></div>
+  </section>
+
+  <!-- 相談 -->
+  <section id="view-consult" class="hidden">
+    <button class="line-btn" id="lineBtnConsult"><span class="em">💬</span>LINEで相談する（写真を送るだけ）</button>
+    <div class="kokoro">
+      <h2>慌てないための心得</h2>
+      <ul>
+        <li><b>水漏れ</b>は、まず<b>止水栓・元栓</b>を閉めて水を止める。</li>
+        <li><b>電気</b>は、焦げ臭い・発熱・煙があれば<b>分電盤（ブレーカー）</b>を切り、触らず連絡。</li>
+        <li><b>「水」と「火（電気）」</b>に関わるものは、迷わず専門家へ。これが被害を最小限にする鉄則です。</li>
+        <li>「いつもと違う」音・匂い・動きの固さを放置しないことが、最大の予防です。</li>
+      </ul>
+    </div>
+    <p class="consult-lead">直し方が分からない、業者の見積もりが妥当か不安——そんなときは、写真を撮ってLINEへ。中立の立場で、必要な対処と進め方をお伝えします。</p>
+    <div class="howto">
+      <b>このアプリをホーム画面に追加すると、いつでもすぐ開けます。</b><br>
+      Safariの共有ボタン（□↑）→「ホーム画面に追加」。
+    </div>
+  </section>
+</main>
+
+<!-- 詳細シート -->
+<div class="overlay" id="overlay">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-head">
+      <span class="stag" id="sheetTag"></span>
+      <h2 id="sheetTitle"></h2>
+      <button class="close" id="sheetClose" aria-label="閉じる">×</button>
+    </div>
+    <div class="sheet-body" id="sheetBody"></div>
+    <div class="sheet-foot">
+      <p class="foot-lead">頼む相手や時間帯で、対応も費用も大きく変わります。慌てて契約する前に、一度ご相談を。</p>
+      <button class="line-btn" style="margin-bottom:0" id="lineBtnSheet"><span class="em">💬</span>写真を撮ってLINEで相談</button>
+    </div>
+  </div>
+</div>
+
+<nav><div class="nwrap">
+  <button data-tab="house" class="on"><span class="nem">🏠</span>戸建て</button>
+  <button data-tab="mansion"><span class="nem">🏢</span>マンション</button>
+  <button data-tab="consult"><span class="nem">💬</span>相談</button>
+</div></nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ITEMS = [{"house":"戸建て","cat":"water","title":"排水管の詰まりによる逆流","id":0},{"house":"戸建て","cat":"water","title":"トイレのタンク水が止まらない","id":1},{"house":"戸建て","cat":"water","title":"給湯器の突然の故障（お湯が出ない）","id":2},{"house":"戸建て","cat":"water","title":"外壁からの雨漏り","id":3},{"house":"戸建て","cat":"water","title":"屋根からの雨漏り","id":4},{"house":"戸建て","cat":"water","title":"排水桝（ます）のあふれ・悪臭","id":5},{"house":"戸建て","cat":"water","title":"蛇口からのポタポタ漏水","id":6},{"house":"戸建て","cat":"water","title":"洗面台下の漏水","id":7},{"house":"戸建て","cat":"water","title":"食洗機の水漏れ","id":8},{"house":"戸建て","cat":"water","title":"キッチンのレンジフードの油垂れ","id":9},{"house":"戸建て","cat":"water","title":"浴室の換気扇が回らない","id":10},{"house":"戸建て","cat":"water","title":"洗濯機パンからの漏水","id":11},{"house":"戸建て","cat":"water","title":"浄化槽の警報ブザー鳴動","id":12},{"house":"戸建て","cat":"water","title":"井戸ポンプの不具合（水圧低下）","id":13},{"house":"戸建て","cat":"water","title":"外部立水栓の凍結破損","id":14},{"house":"戸建て","cat":"fixture","title":"玄関ドアの鍵が回らない・固い","id":15},{"house":"戸建て","cat":"fixture","title":"室内ドアのラッチが噛み合わない","id":16},{"house":"戸建て","cat":"fixture","title":"引き戸がレールから脱輪","id":17},{"house":"戸建て","cat":"fixture","title":"窓が重くて動かない","id":18},{"house":"戸建て","cat":"fixture","title":"網戸が外れて落ちる","id":19},{"house":"戸建て","cat":"fixture","title":"収納扉の蝶番が緩んで垂れ下がる","id":20},{"house":"戸建て","cat":"fixture","title":"床のきしみ（沈み込み）","id":21},{"house":"戸建て","cat":"fixture","title":"階段の手すりのぐらつき","id":22},{"house":"戸建て","cat":"fixture","title":"壁紙（クロス）の剥がれ","id":23},{"house":"戸建て","cat":"fixture","title":"窓サッシの結露によるカビ発生","id":24},{"house":"戸建て","cat":"fixture","title":"シロアリの羽アリ発生","id":25},{"house":"戸建て","cat":"fixture","title":"基礎コンクリートのひび割れ","id":26},{"house":"戸建て","cat":"other","title":"ブレーカーが頻繁に落ちる","id":27},{"house":"戸建て","cat":"other","title":"コンセントの焦げ臭い・発熱","id":28},{"house":"戸建て","cat":"other","title":"インターホンのモニターが映らない","id":29},{"house":"戸建て","cat":"other","title":"照明スイッチの反応不良","id":30},{"house":"戸建て","cat":"other","title":"エアコンのドレンホース詰まり（室内水漏れ）","id":31},{"house":"戸建て","cat":"other","title":"宅配ボックスの開錠不可","id":32},{"house":"戸建て","cat":"other","title":"シャッターが途中で止まる","id":33},{"house":"戸建て","cat":"other","title":"門扉のヒンジ故障","id":34},{"house":"戸建て","cat":"other","title":"外灯の不点灯","id":35},{"house":"戸建て","cat":"other","title":"フェンスの支柱腐食","id":36},{"house":"戸建て","cat":"other","title":"ガレージの床面陥没","id":37},{"house":"戸建て","cat":"other","title":"屋外の雑草による侵入被害","id":38},{"house":"戸建て","cat":"other","title":"冬場の配管凍結による断水","id":39},{"house":"戸建て","cat":"other","title":"雨樋（あまどい）の詰まり・あふれ","id":40},{"house":"戸建て","cat":"other","title":"軒天の剥がれ","id":41},{"house":"戸建て","cat":"other","title":"害獣（ネズミ・コウモリ）の侵入音","id":42},{"house":"戸建て","cat":"other","title":"庭木の枝折れによる屋根損傷","id":43},{"house":"戸建て","cat":"other","title":"給湯器リモコンの表示エラー","id":44},{"house":"戸建て","cat":"other","title":"浴室乾燥機の異音","id":45},{"house":"戸建て","cat":"other","title":"床下収納の湿気・カビ","id":46},{"house":"戸建て","cat":"other","title":"カーテンレールの破損","id":47},{"house":"戸建て","cat":"other","title":"畳のダニ発生","id":48},{"house":"戸建て","cat":"other","title":"地盤沈下による建具の不具合","id":49},{"house":"マンション","cat":"water","title":"上階からの漏水（天井からの水滴）","id":50},{"house":"マンション","cat":"water","title":"排水管の共用部詰まり（自室に逆流）","id":51},{"house":"マンション","cat":"water","title":"トイレの詰まり（流れない）","id":52},{"house":"マンション","cat":"water","title":"浴室換気乾燥機が作動しない","id":53},{"house":"マンション","cat":"water","title":"給湯器が突然停止（集合管トラブル）","id":54},{"house":"マンション","cat":"water","title":"キッチンのディスポーザー故障","id":55},{"house":"マンション","cat":"water","title":"洗面台排水栓の開閉不可","id":56},{"house":"マンション","cat":"water","title":"蛇口のシャワーヘッドからの漏水","id":57},{"house":"マンション","cat":"water","title":"洗濯機用蛇口からの水漏れ","id":58},{"house":"マンション","cat":"water","title":"床暖房の温水漏れ・循環エラー","id":59},{"house":"マンション","cat":"water","title":"24時間換気システムの異音","id":60},{"house":"マンション","cat":"water","title":"玄関インターホンの通信障害","id":61},{"house":"マンション","cat":"water","title":"共用廊下の照明切れ（心理的不安）","id":62},{"house":"マンション","cat":"water","title":"エレベーターの停止","id":63},{"house":"マンション","cat":"fixture","title":"玄関ドアが枠に当たって閉まらない","id":64},{"house":"マンション","cat":"fixture","title":"窓サッシの鍵（クレセント）破損","id":65},{"house":"マンション","cat":"fixture","title":"室内引き戸の戸車摩耗","id":66},{"house":"マンション","cat":"fixture","title":"収納内部の湿気・結露","id":67},{"house":"マンション","cat":"fixture","title":"クロスのジョイント剥がれ","id":68},{"house":"マンション","cat":"fixture","title":"天井のボードの継ぎ目割れ","id":69},{"house":"マンション","cat":"fixture","title":"クローゼット扉の開閉不良","id":70},{"house":"マンション","cat":"fixture","title":"フローリングの床鳴り","id":71},{"house":"マンション","cat":"fixture","title":"玄関のクローザーからの油漏れ","id":72},{"house":"マンション","cat":"fixture","title":"網戸のネット破れ・開閉不良","id":73},{"house":"マンション","cat":"fixture","title":"窓枠からの隙間風","id":74},{"house":"マンション","cat":"fixture","title":"防音サッシのパッキン劣化","id":75},{"house":"マンション","cat":"fixture","title":"浴室ドアのパッキンカビ・割れ","id":76},{"house":"マンション","cat":"life","title":"階下からの騒音トラブル","id":77},{"house":"マンション","cat":"life","title":"上階からの生活音（足音）","id":78},{"house":"マンション","cat":"life","title":"隣室からの漏水被害","id":79},{"house":"マンション","cat":"life","title":"共有廊下への荷物放置（消防法抵触）","id":80},{"house":"マンション","cat":"life","title":"ベランダの排水溝詰まり","id":81},{"house":"マンション","cat":"life","title":"煙探知機の誤作動・電池切れアラーム","id":82},{"house":"マンション","cat":"life","title":"ガス漏れ警報器の作動","id":83},{"house":"マンション","cat":"life","title":"宅配ロッカーの操作エラー","id":84},{"house":"マンション","cat":"life","title":"スマートロックの電池切れ（締め出し）","id":85},{"house":"マンション","cat":"life","title":"通気口からの虫の侵入","id":86},{"house":"マンション","cat":"life","title":"壁内の配管結露（壁面浸水）","id":87},{"house":"マンション","cat":"life","title":"浴室のコーキング亀裂","id":88},{"house":"マンション","cat":"life","title":"キッチンキャビネットの棚板落下","id":89},{"house":"マンション","cat":"life","title":"照明器具カバーの脱落","id":90},{"house":"マンション","cat":"life","title":"室内干し金具の荷重超過による破損","id":91},{"house":"マンション","cat":"life","title":"玄関のタイルひび割れ","id":92},{"house":"マンション","cat":"life","title":"郵便受けのダイヤル故障","id":93},{"house":"マンション","cat":"life","title":"コンセントプレートの浮き","id":94},{"house":"マンション","cat":"life","title":"LAN配線の不通","id":95},{"house":"マンション","cat":"life","title":"TV端子の接触不良","id":96},{"house":"マンション","cat":"life","title":"防犯カメラの死角問題","id":97},{"house":"マンション","cat":"life","title":"駐輪場のラック故障","id":98},{"house":"マンション","cat":"life","title":"大規模修繕による窓の開閉不可（一時的なもの）","id":99}];
+
+/* === LINE友だち追加URL：ここに鎌田さんのURL（https://lin.ee/～）を入れてください === */
+const LINE_URL = "#";
+
+/* カテゴリ別の基本対応（鎌田さんの「心得」がベース） */
+const CATBASE = {
+  water:{
+    firstaid:"水漏れを伴う場合は、まず止水栓・元栓を閉めて水を止めてください。被害の拡大を防げます。無理に分解しないでください。",
+    neglect:"放置すると、床や壁のシミ・カビ、階下への漏水被害につながることがあります。",
+    proline:"水まわりは、原因の特定や部品交換に専門の知識・道具が必要なことが多く、ご自身での対応が難しいケースが多い分野です。"
+  },
+  fixture:{
+    firstaid:"無理にこじ開けたり、強い力を加えたりしないでください。破損やけがの原因になります。動きが固いときは一度止めて、状態を確認してください。",
+    neglect:"放置すると、開閉できなくなる・防犯や断熱が損なわれるなど、不便と費用の拡大につながることがあります。",
+    proline:"調整で直る軽いものから部品交換まで幅があり、原因の見極めが必要です。"
+  },
+  other:{
+    firstaid:"焦げ臭い・発熱・煙・異音などがあれば、すぐ使用をやめ、分電盤（ブレーカー）を切ってください。危険を感じたら、ご自身で修理せず至急ご連絡を。",
+    neglect:"電気に関わる不具合の放置は、火災の恐れにつながります。早めの点検を。",
+    proline:"電気・設備は感電や火災の危険があり、迷わず専門家に任せるのが鉄則です。"
+  },
+  life:{
+    firstaid:"まず状況を記録（写真・日時・内容）してください。煙・ガス・電気など危険を感じるものは触らず、管理会社や専門業者へ至急連絡を。近隣に関わることは、直接の交渉より先に管理会社へ相談すると、こじれにくくなります。",
+    neglect:"放置すると、被害や近隣トラブルが大きくなり、解決に時間と費用がかかることがあります。",
+    proline:"原因や責任の所在の見極めが必要で、まず専門家・管理会社に相談するのが安全です。"
+  }
+};
+const MANSION_NOTE = "マンションは、不具合の場所が専有部分か共用部分かで、費用の負担や連絡先（管理会社・管理組合）が変わります。自己判断の前に確認を。";
+
+/* 完成見本（3問・鎌田さんと作成済み） */
+const OVERRIDES = {
+  1:{ // 戸建て トイレのタンク水が止まらない
+    intro:"タンク式トイレで、流した後も水がチャラチャラ出続ける症状です。",
+    cause:"多くは、タンク内のフロート（浮き玉）まわりの金具の腐食か、ゴムパッキンの劣化です。",
+    diy:"まず便器の根元から下りる給水管にある止水栓を閉めれば、水は止まります。ただし家ごとに形が違い、固いこともあります。無理は禁物です。直すこと自体は難しくありませんが、DIYに慣れていなければ無理をせず業者へ。",
+    neglect:"少しでも流れ続けると、水道代に加えて下水代も思いのほかかさみます。早めの対応を。"
+  },
+  6:{ // 戸建て 蛇口からのポタポタ漏水
+    intro:"蛇口やレバーの根元・先から、水がポタポタ・チョロチョロ漏れる症状です。",
+    cause:"多くは、内部パッキンの劣化や、レバー混合栓のバルブカートリッジの劣化です。先端の出が悪いときは、泡沫キャップ（フィルター）の詰まりのことも。",
+    diy:"まずシンク下や根元の止水栓を閉めて水を止めてください。部品交換で直りますが、混合栓の分解は素人には難しく、無理に回すと悪化します。慣れていなければ業者へ。",
+    neglect:"放置すると、シンク下や床への水漏れで、収納や床材を傷めることがあります。"
+  },
+  31:{ // 戸建て エアコンのドレンホース詰まり（室内水漏れ）
+    intro:"冷房中などに、室内機から水がポタポタ落ちる症状です。冷えない・異音を伴うこともあります。",
+    cause:"多くは、内部の水を外へ出すドレン（排水）ホースの詰まりです。",
+    diy:"まず運転を止めてください。漏れの拡大を防げます。フィルター掃除と、室外機の前に物がないかの確認まではできますが、ドレンの詰まり除去や内部の不具合は専門の道具が必要で、ご自身での対応が難しいことが多い分野です。無理に分解しないでください。",
+    neglect:"水漏れの放置は、壁・天井のシミやカビにつながります。"
+  }
+};
+
+/* === ラベル === */
+const CAT_LABEL = {
+  house:{water:"水回り・設備",fixture:"建具・構造",other:"電気・その他"},
+  mansion:{water:"水回り・設備",fixture:"建具・空間",life:"暮らし・近隣"}
+};
+const CAT_ORDER = {house:["water","fixture","other"], mansion:["water","fixture","life"]};
+const BYID={}; ITEMS.forEach(it=>BYID[it.id]=it);
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600);}
+
+function openLine(){
+  if(LINE_URL && LINE_URL!=='#'){ window.open(LINE_URL,'_blank'); }
+  else { toast("LINE友だち追加URLを設定すると、ここから相談に進めます。"); }
+}
+document.getElementById('lineBtnConsult').addEventListener('click',openLine);
+document.getElementById('lineBtnSheet').addEventListener('click',openLine);
+
+/* === LIST (戸建て/マンション) === */
+let house='house', cat='all', query='';
+const HOUSE_KEY={house:'戸建て',mansion:'マンション'};
+const catChips=document.getElementById('catChips');
+const listEl=document.getElementById('list');
+const listCount=document.getElementById('listCount');
+const qInput=document.getElementById('q'), qClr=document.getElementById('qClr');
+
+function buildChips(){
+  let h='<button class="chip'+(cat==='all'?' on':'')+'" data-c="all">すべて</button>';
+  CAT_ORDER[house].forEach(c=>{
+    h+='<button class="chip'+(cat===c?' on':'')+'" data-c="'+c+'">'+esc(CAT_LABEL[house][c])+'</button>';
+  });
+  catChips.innerHTML=h;
+  catChips.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    cat=b.dataset.c; buildChips(); renderList();
+  }));
+}
+function filtered(){
+  const hk=HOUSE_KEY[house], q=query.trim().toLowerCase();
+  return ITEMS.filter(it=>it.house===hk
+    && (cat==='all'||it.cat===cat)
+    && (!q || it.title.toLowerCase().includes(q)));
+}
+function renderList(){
+  const items=filtered();
+  listCount.textContent=items.length+' 件';
+  if(!items.length){
+    listEl.innerHTML='<div class="empty"><span class="big">🔍</span>該当する症状が見つかりません。<br>別の言葉で探すか、相談タブからLINEでお問い合わせください。</div>';
+    return;
+  }
+  listEl.innerHTML=items.map(it=>
+    '<div class="item" data-id="'+it.id+'"><div class="txt">'
+    +'<div class="ttl">'+esc(it.title)+'</div>'
+    +'<div class="ctag">'+esc(CAT_LABEL[house][it.cat]||'')+'</div></div>'
+    +'<div class="chev">›</div></div>').join('');
+  listEl.querySelectorAll('.item').forEach(el=>el.addEventListener('click',()=>openDetail(+el.dataset.id)));
+}
+qInput.addEventListener('input',()=>{query=qInput.value;qClr.style.display=query?'block':'none';renderList();});
+qClr.addEventListener('click',()=>{query='';qInput.value='';qClr.style.display='none';renderList();qInput.focus();});
+
+/* === DETAIL SHEET === */
+const overlay=document.getElementById('overlay');
+const sheetTag=document.getElementById('sheetTag');
+const sheetTitle=document.getElementById('sheetTitle');
+const sheetBody=document.getElementById('sheetBody');
+
+function blk(label,text,warn){
+  return '<div class="blk'+(warn?' warn':'')+'"><span class="lab">'+esc(label)+'</span><p>'+esc(text)+'</p></div>';
+}
+function openDetail(id){
+  const it=BYID[id]; if(!it) return;
+  sheetTag.textContent=it.house;
+  sheetTitle.textContent=it.title;
+  let html='';
+  const ov=OVERRIDES[id];
+  if(ov){
+    html+='<p class="lead">'+esc(ov.intro)+'</p>';
+    html+=blk('原因',ov.cause);
+    html+=blk('応急処置・対処',ov.diy);
+    html+=blk('放置すると',ov.neglect,true);
+  }else{
+    const b=CATBASE[it.cat]||CATBASE.other;
+    html+=blk('まず応急処置',b.firstaid);
+    html+=blk('放置すると',b.neglect,true);
+    html+=blk('プロの領域',b.proline);
+  }
+  if(it.house==='マンション'){
+    html+='<div class="mansion-note">🏢 '+esc(MANSION_NOTE)+'</div>';
+  }
+  sheetBody.innerHTML=html;
+  sheetBody.scrollTop=0;
+  overlay.classList.add('on');
+}
+function closeDetail(){overlay.classList.remove('on');}
+document.getElementById('sheetClose').addEventListener('click',closeDetail);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeDetail();});
+
+/* === TABS === */
+const views={list:document.getElementById('view-list'),consult:document.getElementById('view-consult')};
+const navBtns=document.querySelectorAll('nav button');
+function setTab(t){
+  navBtns.forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  if(t==='consult'){
+    views.list.classList.add('hidden'); views.consult.classList.remove('hidden');
+  }else{
+    views.consult.classList.add('hidden'); views.list.classList.remove('hidden');
+    house=t; cat='all'; query=''; qInput.value=''; qClr.style.display='none';
+    buildChips(); renderList();
+  }
+  closeDetail(); window.scrollTo(0,0);
+}
+navBtns.forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+
+/* init */
+buildChips(); renderList();
+</script>
+</body>
+</html>
